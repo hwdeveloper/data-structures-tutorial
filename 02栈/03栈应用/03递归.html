@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>03递归</title>
+    <script src="Stack.js"></script>
+    <script>
+        function fact(n) {
+            var s = new Stack();
+            while (n > 1) {
+                s.push(n--);
+            }
+            var product = 1;
+            while (s.length() > 0) {
+                product *= s.pop();
+            }
+            return product;
+        }
+        console.log(fact(5)); // 显示120
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
