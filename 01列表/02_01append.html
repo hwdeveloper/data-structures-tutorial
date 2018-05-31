@@ -9,7 +9,10 @@
             var listSize = 0;
             var dataStore = [];
             this.append = function (element) {
-                dataStore[listSize++] = element;
+                //1,长度自增
+                listSize++;
+                //2,给数组赋值
+                dataStore[listSize] = element;
             };
         }
     </script>
