@@ -6,21 +6,33 @@
     <title>01创建列表</title>
     <script>
         function List() {
+            //队列的长度
             var listSize = 0;
             var dataStore = [];
             this.append = function (element) {
-                dataStore[listSize++] = element;
+                //2,给数组赋值
+                dataStore[listSize] = element;
+                //1,长度自增
+                listSize++;
             };
-            
             this.find=function (element) {
                 for (var i = 0; i < dataStore.length; ++i) {
                     if (dataStore[i] == element) {
+
                         return i;
                     }
                 }
                 return -1;
             }
         }
+
+        var list = new List();
+
+        list.append("你好啊");
+        list.append("我很好");
+
+        var index =list.find('你好啊');
+        console.log(index);
     </script>
 </head>
 <body>
