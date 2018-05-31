@@ -6,56 +6,60 @@
     <title>01创建列表</title>
     <script>
         function List() {
-            this.listSize = 0;
-            this.pos = 0;
-            this.dataStore = [];
-            this.find = find;
-            this.toString = toString;
-            this.append = append;
-            this.remove = remove;
-            this.insert = insert;
-            this.length = length;
-            this.length = length;
-        }
+            //队列的长度
+            var listSize = 0;
+            var dataStore = [];
+            this.append = function (element) {
+                //2,给数组赋值
+                dataStore[listSize] = element;
+                //1,长度自增
+                listSize++;
+            };
+            this.find=function (element) {
+                for (var i = 0; i < dataStore.length; ++i) {
+                    if (dataStore[i] == element) {
 
-        function append(element) {
-            this.dataStore[this.listSize++] = element;
-        }
-
-        function find(element) {
-            for (var i = 0; i < this.dataStore.length; ++i) {
-                if (this.dataStore[i] == element) {
-                    return i;
+                        return i;
+                    }
                 }
+                return -1;
             }
-            return -1;
-        }
 
-        function remove(element) {
-            var foundAt = this.find(element);
-            if (foundAt > -1) {
-                this.dataStore.splice(foundAt,1);
-                --this.listSize;
-                return true;
+            this.remove=function(element) {
+                var foundAt = this.find(element);
+                if (foundAt > -1) {
+                    dataStore.splice(foundAt,1);
+                    listSize--;
+                    return true;
+                }
+                return false;
             }
-            return false;
-        }
-        function length() {
-            return this.listSize;
-        }
-        function toString() {
-            return this.dataStore;
-        }
+            this.length = function() {
+                return listSize;
+            }
 
-        function insert(element, after) {
-            var insertPos = this.find(after);
-            if (insertPos > -1) {
-                this.dataStore.splice(insertPos+1, 0, element);
-                ++this.listSize;
-                return true;
+            this.toString=function() {
+                return dataStore;
             }
-            return false;
+
+            this.insert=function(element, after) {
+                var insertPos = this.find(after);
+                if (insertPos > -1) {
+                    dataStore.splice(insertPos+1, 0, element);
+                    ++listSize;
+                    return true;
+                }
+                return false;
+            }
         }
+        var list = new List();
+        list.append("中国");
+        list.append("美国");
+        list.append("日本");
+
+        list.insert('俄罗斯','中国')
+
+        console.log(list.toString());
 
     </script>
 </head>
