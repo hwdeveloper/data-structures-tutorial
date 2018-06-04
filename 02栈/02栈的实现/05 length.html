@@ -8,22 +8,21 @@
         function Stack() {
             this.dataStore = [];
             this.top = 0;
-            this.push = push;
-            this.pop = pop;
-            this.peek = peek;
+            this.push = function (element) {
+                this.dataStore[this.top++] = element;
+            }
+            this.pop = function () {
+                return this.dataStore[--this.top];
+            }
+
+            this.peek= function() {
+                return this.dataStore[this.top-1];
+            }
+            this.length=function () {
+                return this.top;
+            }
         }
-        function push(element) {
-            this.dataStore[this.top++] = element;
-        }
-        function pop() {
-            return this.dataStore[--this.top];
-        }
-        function peek() {
-            return this.dataStore[this.top-1];
-        }
-        function length() {
-            return this.top;
-        }
+
     </script>
 </head>
 <body>

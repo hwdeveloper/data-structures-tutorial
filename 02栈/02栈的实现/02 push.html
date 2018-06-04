@@ -8,13 +8,11 @@
         function Stack() {
             this.dataStore = [];
             this.top = 0;
-            this.push = push;
-            this.pop = pop;
-            this.peek = peek;
+            this.push = function (element) {
+                this.dataStore[this.top++] = element;
+            }
         }
-        function push(element) {
-            this.dataStore[this.top++] = element;
-        }
+
 
     </script>
 </head>
