@@ -41,24 +41,26 @@
             }
         }
         function dance(males, females) {
-            console.log("The dance partners are: \n");
+            console.log("跳舞开始: \n");
             while (!females.empty() && !males.empty()) {
                 person = females.dequeue();
-                console.log("Female dancer is: " + person.name);
+                console.log("女舞伴是: " + person.name);
                 person = males.dequeue();
-                console.log(" and the male dancer is: " + person.name);
+                console.log("男舞伴是: " + person.name);
             }
 
         }
+        //1，获得跳舞的人
         getDancers(maleDancers, femaleDancers);
+        //2,开始跳舞
         dance(maleDancers, femaleDancers);
         if (maleDancers.count() > 0) {
-            console.log("There are " + maleDancers.count() +
-                " male dancers waiting to dance.");
+            console.log("当前还有 " + maleDancers.count() +
+                "个女性舞伴等待跳舞");
         }
         if (femaleDancers.count() > 0) {
-            console.log("There are " + femaleDancers.count() +
-                " female dancers waiting to dance.");
+            console.log("当前" + femaleDancers.count() +
+                "男性舞伴等待跳舞");
         }
     </script>
 </head>
