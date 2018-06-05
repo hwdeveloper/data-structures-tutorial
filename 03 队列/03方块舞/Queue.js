@@ -1,41 +1,30 @@
 function Queue() {
     this.dataStore = [];
-    this.enqueue = enqueue;
-    this.dequeue = dequeue;
-    this.front = front;
-    this.back = back;
-    this.toString = toString;
-    this.empty = empty;
-    this.count = count;
-}
-function enqueue(element) {
-    this.dataStore.push(element);
-}
-function dequeue() {
-    return this.dataStore.shift();
-}
-function front() {
-    return this.dataStore[0];
-}
-function back() {
-    return this.dataStore[this.dataStore.length-1];
-}
-function toString() {
-    var retStr = "";
-    for (var i = 0; i < this.dataStore.length; ++i) {
-        retStr += this.dataStore[i] + "\n";
-    }
-    return retStr;
-}
-function count() {
-    return this.dataStore.length;
-}
-
-function empty() {
-    if (this.dataStore.length == 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    this.enqueue = function () {
+        this.dataStore.push(element);
+    };
+    this.dequeue = function () {
+        return this.dataStore.shift();
+    };
+    this.front = function () {
+        return this.dataStore[0];
+    };
+    this.back = function () {
+        return this.dataStore[this.dataStore.length-1];
+    };
+    this.toString = function () {
+        var retStr = "";
+        for (var i = 0; i < this.dataStore.length; ++i) {
+            retStr += this.dataStore[i] + "\n";
+        }
+        return retStr;
+    };
+    this.empty = function () {
+        if (this.dataStore.length == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
 }
