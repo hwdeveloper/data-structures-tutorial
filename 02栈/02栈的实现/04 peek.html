@@ -2,23 +2,63 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>04 peek</title>
+    <title>peek</title>
     <script>
+
         function Stack() {
-            this.dataStore = [];
-            this.top = 0;
-            this.push = function (element) {
-                this.dataStore[this.top++] = element;
-            }
-            this.pop = function () {
-                return this.dataStore[--this.top];
+            this.dataStore=[];
+            this.push=function (element) {
+                this.dataStore[this.dataStore.length]=element;
             }
 
-            this.peek= function() {
-                return this.dataStore[this.top-1];
+            this.pop=function(){
+                if(this.dataStore.length<1)
+                    return null;
+                //取得最后的数据
+                var buffer = this.dataStore[this.dataStore.length-1];
+                //把最后的数据置空
+                this.dataStore[this.dataStore.length-1]=null;
+                //改变数组的长度
+                this.dataStore.length--;
+                //返回数据
+                return buffer;
             }
+
+            this.peek=function () {
+
+                //取得头部数据
+                var buffer = this.dataStore[0];
+                //获得数组的长度
+                var length = this.dataStore.length;
+                //遍历数据
+                for(var i=0;i<length-1;i++){
+                    //把数据往前面移动
+                    this.dataStore[i]=this.dataStore[i+1];
+                }
+                //把最后的数据置空
+                this.dataStore[length-1]=null;
+                //数组的长度减少
+                this.dataStore.length--;
+                //返回数据
+                return buffer;
+            }
+
+
         }
+        //1,创建一个堆栈
+        var stack = new Stack();
+        //2,添加数据
+        stack.push("小刚");
+        stack.push("小林");
+        stack.push("小超");
+        stack.push("小孟");
+
+        console.log(stack.pop());
+        console.log(stack.dataStore.toString());
+
+        console.log(stack.peek());
+        console.log(stack.dataStore.toString());
+
     </script>
 </head>
 <body>
