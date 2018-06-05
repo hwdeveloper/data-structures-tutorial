@@ -6,36 +6,29 @@
     <title>02回文</title>
     <script src="Stack.js"></script>
     <script>
-        function isPalindrome(word) {
-            var s = new Stack();
-            for (var i = 0; i < word.length; ++i) {
-                s.push(word[i]);
+
+        function isPalindrome(words) {
+            //1,创建栈对象
+            var stack = new Stack();
+            //2,获得字符串的长度
+            var length = words.length;
+            //3,遍历当前的字符串
+            for(var i=0;i<length;i++){
+                stack.push(words[i]);
             }
-            var rword = "";
-            while (s.length() > 0) {
-                rword += s.pop();
-            }
-            if (word == rword) {
+            var data='';
+            stack.forEach(function (item) {
+                data=data+item;
+            })
+            //如果当前的文字相等，就返回真
+            if(words==data){
                 return true;
-            }
-            else {
+            }else{
                 return false;
             }
         }
-        var word = "hello";
-        if (isPalindrome(word)) {
-            console.log(word + " 是一个回文");
-        }
-        else {
-            console.log(word + " 不是一个回文");
-        }
-        word = "racecar"
-        if (isPalindrome(word)) {
-            console.log(word + "是一个回文");
-        }
-        else {
-            console.log(word + " 不是一个回文");
-        }
+
+        console.log(isPalindrome('abaaba1'));
     </script>
 </head>
 <body>
