@@ -11,12 +11,12 @@
             this.sex = sex;
         }
         var names=["F Allison McMillan",
-            "M Frank Opitz",
-            "M Mason McMillan",
+            " M Frank Opitz",
+            "M Mason McMillan ",
             "M Clayton Ruff",
-            "F Cheryl Ferenback",
-            "M Raymond Williams",
-            "F Jennifer Ingram",
+            "F Cheryl Ferenback ",
+            " M Raymond Williams",
+            "F Jennifer Ingram ",
             "M Bryan Frazer",
             "M David Durr",
             "M Danny Martin",
@@ -39,25 +39,26 @@
         }
 
         function dance(males, females) {
-            console.log("The dance partners are: \n");
+            //同时满足男舞伴和女舞伴都有的时候
             while (!females.empty() && !males.empty()) {
+                //每次都是队列前面的人跳舞
                 person = females.dequeue();
-                console.log("Female dancer is: " + person.name);
                 person = males.dequeue();
-                console.log(" and the male dancer is: " + person.name);
             }
 
         }
 
         var maleDancers = new Queue();
         var femaleDancers = new Queue();
+
         getDancers(maleDancers, femaleDancers);
+
         dance(maleDancers, femaleDancers);
         if (!femaleDancers.empty()) {
-            console.log(femaleDancers.front().name + " is waiting to dance.");
+            console.log(femaleDancers.front().name + "等待舞伴");
         }
         if (!maleDancers.empty()) {
-            console.log(maleDancers.front().name + " is waiting to dance.");
+            console.log(maleDancers.front().name + "等待舞伴");
         }
     </script>
 </head>
