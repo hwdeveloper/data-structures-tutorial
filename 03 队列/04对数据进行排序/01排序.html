@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>01排序.html</title>
+    <title>01排序</title>
     <script src="Queue.js"></script>
     <script>
         function distribute(nums, queues, n, digit) {
@@ -24,6 +24,7 @@
                 }
             }
         }
+        //显示数据
         function dispArray(arr) {
             for (var i = 0; i < arr.length; ++i) {
                 console.log(arr[i] + " ");
@@ -38,13 +39,13 @@
         for (var i = 0; i < 10; ++i) {
             nums[i] = Math.floor(Math.floor(Math.random() * 101));
         }
-        console.log("Before radix sort: ");
         dispArray(nums);
         distribute(nums, queues, 10, 1);
+
         collect(queues, nums);
         distribute(nums, queues, 10, 10);
         collect(queues, nums);
-        console.log("\n\nAfter radix sort: ");
+        console.log("\n\n整理后的数据: ");
         dispArray(nums);
     </script>
 </head>
