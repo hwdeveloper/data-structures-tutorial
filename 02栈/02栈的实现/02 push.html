@@ -7,9 +7,8 @@
     <script>
         function Stack() {
             this.dataStore = [];
-            this.top = 0;
             this.push = function (element) {
-                this.dataStore[this.top++] = element;
+                this.dataStore[this.dataStore.length] = element;
             }
         }
 
