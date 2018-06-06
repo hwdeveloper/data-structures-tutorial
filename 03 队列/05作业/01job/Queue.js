@@ -4,10 +4,19 @@ function Queue(){
     this.enqueue=function (element) {
         this.dataStore.push(element);
     }
+    //进队列，从头部添加数据
+    this.enHeadqueue=function (element) {
+        this.dataStore.unshift(element);
+    }
     //从队列头部删除数据，并且获得这个数据
     this.dequeue=function () {
         return this.dataStore.shift();
     }
+    //从队列尾部删除数据，并且获得这个数据
+    this.deEndqueue=function () {
+        return this.dataStore.pop();
+    }
+
     //获得队列最前面的数据
     this.front=function(){
         return this.dataStore[0];
@@ -35,5 +44,9 @@ function Queue(){
         for(var i=0;i<length;i++){
             call(this.dataStore[i],i);
         }
+    }
+    this.clear = function () {
+        delete  this.dataStore;
+        this.dataStore = [];
     }
 }
