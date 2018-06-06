@@ -7,19 +7,6 @@ function List() {
         //设置当前的数据
         this.dataStore[this.dataStore.length] = element;
     }
-    this.append1=function (element) {
-        //1,遍历当前的数据
-        var length = this.dataStore.length;
-        for(var i=0;i<length;i++){
-         if(element<this.dataStore[i]){
-
-             return;
-         }
-        }
-        this.dataStore[this.dataStore.length] = element;
-    }
-
-
     
     this.before=function (element,before) {
 
@@ -115,5 +102,9 @@ function List() {
             // var item=  this.dataStore[i];
             call(this.dataStore[i]);
         }
+    }
+    
+    this.filer=function () {
+        
     }
 }
