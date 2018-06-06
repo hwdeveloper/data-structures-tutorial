@@ -10,7 +10,7 @@ function Queue() {
         return this.dataStore[0];
     };
     this.back = function () {
-        return this.dataStore[this.dataStore.length-1];
+        return this.dataStore[this.dataStore.length - 1];
     };
     this.toString = function () {
         var retStr = "";
@@ -27,4 +27,8 @@ function Queue() {
             return false;
         }
     };
+    this.clear = function () {
+        delete  this.dataStore;
+        this.dataStore = [];
+    }
 }

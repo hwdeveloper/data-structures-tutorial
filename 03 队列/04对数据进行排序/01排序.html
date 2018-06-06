@@ -6,47 +6,68 @@
     <title>01排序</title>
     <script src="Queue.js"></script>
     <script>
-        function distribute(nums, queues, n, digit) {
-            for (var i = 0; i < n; ++i) {
-                if (digit == 1) {
-                    queues[nums[i]%10].enqueue(nums[i]);
-                }
-                else {
-                    queues[Math.floor(nums[i] / 10)].enqueue(nums[i]);
+        function SortingOne(queues,numbers) {
+            //遍历数据
+            for(var i=0;i<10;i++){
+                var oneValue = numbers[i]%10;
+                queues[oneValue].enqueue(numbers[i])
+            }
+            var data = [];
+            var index=0;
+            for(var i=0;i<10;i++){
+                if(!queues[i].empty()){
+                    while(!queues[i].empty()){
+                        data[index]=queues[i].dequeue();
+                        index++;
+                    }
                 }
             }
-        }
-        function collect(queues, nums) {
-            var i = 0;
-            for (var digit = 0; digit < 10; ++digit) {
-                while (!queues[digit].empty()) {
-                    nums[i++] = queues[digit].dequeue();
-                }
-            }
-        }
-        //显示数据
-        function dispArray(arr) {
-            for (var i = 0; i < arr.length; ++i) {
-                console.log(arr[i] + " ");
-            }
+            return data;
+
         }
 
+        function SortingTen(queues,numbers) {
+            //遍历数据
+            for(var i=0;i<10;i++){
+                var tenValue =Math.floor(numbers[i]/10);
+                queues[tenValue].enqueue(numbers[i])
+            }
+            var data = [];
+            var index=0;
+            for(var i=0;i<10;i++){
+                if(!queues[i].empty()){
+                    while(!queues[i].empty()){
+                        data[index]=queues[i].dequeue();
+                        index++;
+                    }
+                }
+            }
+            return data;
+
+        }
+
+        //准备一个数据
+        var numbers = [];
+        //给数据值
+        for(var i=0;i<10;i++){
+            numbers[i]=Math.floor(Math.random()*90)+10;
+        }
+        //准备10个队列
         var queues = [];
-        for (var i = 0; i < 10; ++i) {
-            queues[i] = new Queue();
+        for(var i=0;i<10;i++){
+            queues[i]= new Queue();
         }
-        var nums = [];
-        for (var i = 0; i < 10; ++i) {
-            nums[i] = Math.floor(Math.floor(Math.random() * 101));
-        }
-        dispArray(nums);
-        distribute(nums, queues, 10, 1);
 
-        collect(queues, nums);
-        distribute(nums, queues, 10, 10);
-        collect(queues, nums);
-        console.log("\n\n整理后的数据: ");
-        dispArray(nums);
+        //对个位排序
+        var numbers= SortingOne(queues,numbers);
+
+        for(var i=0;i<10;i++){
+            queues[i].clear();
+        }
+
+        var numbers= SortingTen(queues,numbers);
+
+        console.log(numbers.toString());
     </script>
 </head>
 <body>
