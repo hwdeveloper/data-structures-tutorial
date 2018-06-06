@@ -1,6 +1,6 @@
 function Queue() {
     this.dataStore = [];
-    this.enqueue = function () {
+    this.enqueue = function (element) {
         this.dataStore.push(element);
     };
     this.dequeue = function () {
