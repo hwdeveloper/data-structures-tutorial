@@ -11,16 +11,17 @@
         }
         function LList() {
             this.head = new Node("head");
-            this.insert = function (element) {
+            //插入节点
+            this.insert=function (element) {
                 //1,获得头节点
-                var currNode = this.head;
+                var currNode =  this.head;
                 //2,找到最后的节点
-                while (currNode.next != null) {
-                    currNode = currNode.next;
+                while(currNode.next!=null){
+                    currNode=currNode.next;
                 }
-                //3，把新创建的节点添加到最后节点
-                currNode.next=new Node(element);
-            };
+                //3，把新添加的节点连接到最后的节点后面
+                currNode.next = new Node(element);
+            }
         }
 
 
