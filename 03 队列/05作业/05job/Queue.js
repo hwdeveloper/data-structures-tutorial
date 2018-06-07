@@ -38,13 +38,14 @@ function Queue(){
             return false;
         }
     }
-    //变量当前队列的数据
+    //遍历当前队列的数据
     this.forEach=function (call) {
         var length = this.dataStore.length;
         for(var i=0;i<length;i++){
             call(this.dataStore[i],i);
         }
     }
+    //清空当前队列的数据
     this.clear = function () {
         delete  this.dataStore;
         this.dataStore = [];
