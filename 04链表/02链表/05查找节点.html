@@ -34,21 +34,27 @@
             };
 
             this.find=function (element) {
+                //1,获得头节点
                 var currNode = this.head;
+                //2，根据当前的节点的值是否等于当前的element来进行遍历
                 while(currNode.element!=element){
+                    //3,把当前节点的后继给予当前的节点
                     currNode = currNode.next;
                 }
+                //4,返回当前的节点
                 return currNode;
             }
         }
 
-        var list = new LList();
-        list.insert('你好1');
-        list.insert('你好2');
-        list.insert('你好3');
-        list.insert('你好4');
+        var lList = new LList();
+        lList.insert("小刚");
+        lList.insert("小明");
+        lList.insert("小李");
+        lList.insert("小花");
 
-        console.log(list.find('你好3'));
+        var currNode=lList.find('小明');
+
+        console.log(currNode.next.element);
         
 
 
