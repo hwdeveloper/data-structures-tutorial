@@ -15,20 +15,25 @@
             var name = "姓名" + i;
             var money = (Math.floor(Math.random() * 5) + 9) * 100;
             psersons[i] = new Person(name, money);
+            console.log(name+"拥有"+money);
         }
-
-        while(psersons.length>0){
+        console.log("***************************");
+        while (psersons.length > 0) {
             queue.enqueue(psersons.shift());
         }
 
-        queue.fliter(function (item,index) {
+        var buffer = queue.fliter(function (item, index) {
 
-            if(item.money>1000){
+            if (item.money > 1000) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         });
+
+        buffer.forEach(function (item) {
+            console.log(item.money);
+        })
 
     </script>
 </head>
