@@ -6,13 +6,18 @@
     <script>
         function Dictionary() {
             this.datastore = new Array();
+            this.add = function (key, value) {
+                this.datastore[key] = value;
+            }
+            this.find=function(key){
+                return this.datastore[key];
+            }
         }
-        function add(key, value) {
-            this.datastore[key] = value;
-        }
-        function find(key) {
-            return this.datastore[key];
-        }
+
+        var dictionary = new Dictionary();
+        dictionary.add("url","你好");
+        console.log(dictionary.find("url"));
+
     </script>
 </head>
 <body>

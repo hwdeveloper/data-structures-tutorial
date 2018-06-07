@@ -6,9 +6,9 @@
     <script>
         function Dictionary() {
             this.datastore = new Array();
-        }
-        function add(key, value) {
-            this.datastore[key] = value;
+            this.add = function (key, value) {
+                this.datastore[key] = value;
+            }
         }
     </script>
 </head>
