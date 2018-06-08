@@ -16,9 +16,9 @@
         function BST() {
             this.root = null;
             this.insert = function (data) {
-                var n = new Node(data, null, null);
+                var node = new Node(data, null, null);
                 if (this.root == null) {
-                    this.root = n;
+                    this.root = node;
                 }
                 else {
                     var current = this.root;
@@ -28,14 +28,14 @@
                         if (data < current.data) {
                             current = current.left;
                             if (current == null) {
-                                parent.left = n;
+                                parent.left = node;
                                 break;
                             }
                         }
                         else {
                             current = current.right;
                             if (current == null) {
-                                parent.right = n;
+                                parent.right = node;
                                 break;
                             }
                         }
