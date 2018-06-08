@@ -104,14 +104,13 @@
         nums.insert(22);
         nums.inOrder(nums.root);
         console.log("\n");
-        console.log("Enter a value to search for: ");
         var value = 23;
         var found = nums.find(value);
         if (found != null) {
-            console.log("Found " + value + " in the BST.");
+            console.log("在二叉树里面找到 " + value );
         }
         else {
-            console.log(value + " was not found in the BST.");
+            console.log("在二叉树里面没有找到"+value );
         }
     </script>
 </head>
