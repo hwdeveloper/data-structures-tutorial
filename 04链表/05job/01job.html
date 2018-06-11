@@ -9,27 +9,21 @@
 
         function LList() {
             this.head = new Node('head');
-
             //始终是在最后一个节点插入
             this.insert = function (element) {
-
                 //1,创建一个新节点
                 var newNode= new Node(element);
                 //获得第一个节点
                 var currentNode = this.head.next;
-
-
                 if(currentNode==null){
                     this.head.next = newNode;
                     newNode.previous=this.head;
                     console.log("第一次的时候next为空，所有添加"+element);
-
                 }else{
                     console.log(11+currentNode+element);
                     while(currentNode!=null&&element>currentNode.element){
                         currentNode = currentNode.next;
                     }
-
                     //如果当前新插入进来的值是最大的，那么currentNode是空的
                     if(currentNode==null){
 
@@ -43,7 +37,6 @@
                         //前一个节点和新节点链在一起
                         preNode.next=newNode;
                         newNode.previous=preNode;
-
                         //当前节点和新节点链在一起
                         newNode.next=currentNode;
                         currentNode.previous=newNode;
