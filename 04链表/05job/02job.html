@@ -11,39 +11,33 @@
             this.head = new Node('head');
             //始终是在最后一个节点插入
             this.insert = function (element) {
-                //1,创建一个新节点
-                var newNode= new Node(element);
-                //获得第一个节点
-                var currentNode = this.head.next;
-                if(currentNode==null){
-                    this.head.next = newNode;
-                    newNode.previous=this.head;
-                }else{
-                    while(currentNode!=null&&element>currentNode.element){
-                        currentNode = currentNode.next;
-                    }
-                    //如果当前新插入进来的值是最大的，那么currentNode是空的
-                    if(currentNode==null){
-
-                        var lastNode = this.findLast();
-
-                        lastNode.next = newNode;
-                        newNode.previous=lastNode;
-
-                    }else{
-                        var preNode =currentNode.previous;
-                        //前一个节点和新节点链在一起
-                        preNode.next=newNode;
-                        newNode.previous=preNode;
-                        //当前节点和新节点链在一起
-                        newNode.next=currentNode;
-                        currentNode.previous=newNode;
-                    }
-
-
+                //1,获得头节点
+                var currNode = this.head;
+                //2,获得最后的节点
+                while(currNode.next!=null){
+                    //3,把当前节点的下一个节点赋值给当前的节点
+                    currNode= currNode.next;
                 }
+                //4,创建新节点
+                var newNode = new Node(element);
+                //5，把新创建的节点插入到最后的节点
+                currNode.next =newNode;
+                //6,把最后的节点给新节点的前驱赋值
+                newNode.previous=currNode;
+            }
+            
+            this.insertBefore=function (newElement, before) {
+                //找到before的节点
+                var node = this.find(before);
+                var newNode = new Node(newElement);
 
-                console.log("最后节点的内容:"+this.findLast().element);
+                //找到before的前一个节点
+                var preNode = node.previous;
+                preNode.next=newNode;
+                newNode.previous=preNode;
+
+                newNode.next=node;
+                node.previous=newNode;
             }
 
             this.insertAfter = function (newElement, after) {
@@ -130,11 +124,15 @@
         //1,创建双向链表
         var list = new LList();
 
-        for(var i=0;i<10;i++){
+        list.insert("小超");
+        list.insert("小man");
+        list.insert("小欣");
+        list.insert("小静");
+        list.insert("小屈");
+        list.insert("小杰");
 
-            var buffer = Math.floor(Math.random()*100);
-            list.insert(buffer);
-        }
+        list.insertBefore("小雨",'小静');
+
         console.log("******************************");
         //3,遍历节点
         list.forEach(function (node, index) {
@@ -146,7 +144,7 @@
 </head>
 <body>
 
-<h1>列表 插入数据的时候，自动排序，插入的是阿拉伯数字，小的在前，大的在后</h1>
+<h1>链表 在某个节点前插入节点</h1>
 
 </body>
 </html>
