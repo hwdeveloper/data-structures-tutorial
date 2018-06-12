@@ -48,11 +48,10 @@
 
 
             this.advance=function (element,n) {
-
                 //1,找到当前的节点
                 var currentNode = this.find(element);
                 var target=currentNode;
-                while(n>0&&target.previous!=null&&target.previous.element!='head'){
+                while(n>0&&target.previous.element!='head'){
                     target= target.previous;
                     n--;
                 }
@@ -69,12 +68,9 @@
                 currentNode.previous=preNode;
 
                 currentPre.next=currentNext;
-
                 if(currentNext!=null){
                     currentNext.previous=currentPre;
                 }
-
-
             }
 
 
