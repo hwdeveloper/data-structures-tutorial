@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+        function Node(element, left, right) {
+            this.element = element;
+            this.left = left;
+            this.right = right;
+            this.show = function () {
+                return this.data;
+            };
+        }
+        
+        
+        function BST() {
+            this.root=null;
+            
+            this.inset=function (element) {
+                //1, 根据传进来的数据创建节点
+                var node =Node(element,null,null);
+
+                if(this.root=null){
+                    this.root=node;
+                    return ;
+                }
+                var current = this.root;
+                while(true){
+                    var parent=current;
+                    if(element<current.element){
+                        //如果当前的数据小于当前的节点值，就和当前节点的左边节点进行对比
+                        current = current.left;
+                        if(current=null)
+                        {
+                            parent.left =node;
+                        }
+                    }else{
+                        current = current.right;
+                        if(current==null){
+                            parent.right =node;
+                        }
+                    }
+                }
+
+
+
+                
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
