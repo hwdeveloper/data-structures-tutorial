@@ -5,18 +5,18 @@
     <title>数据结构</title>
     <script>
 
-        function Node(data, left, right) {
-            this.data = data;
+        function Node(element, left, right) {
+            this.element = element;
             this.left = left;
             this.right = right;
             this.show = function () {
-                return this.data;
+                return this.element;
             };
         }
         function BST() {
             this.root = null;
-            this.insert = function (data) {
-                var node = new Node(data, null, null);
+            this.insert = function (element) {
+                var node = new Node(element, null, null);
                 if (this.root == null) {
                     this.root = node;
                 }
@@ -25,7 +25,7 @@
                     var parent;
                     while (true) {
                         parent = current;
-                        if (data < current.data) {
+                        if (element < current.element) {
                             current = current.left;
                             if (current == null) {
                                 parent.left = node;
