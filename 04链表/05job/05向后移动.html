@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>09插入after</title>
+    <script>
+        function Node(element) {
+            this.element = element;
+            this.next = null;
+            this.previous = null;
+        }
+
+        function LList() {
+            this.head = new Node("head");
+
+            this.length = 1;
+            //插入节点
+            this.insert = function (element) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,获得最后的节点
+                while (currNode.next != null) {
+                    //3,把当前节点的下一个节点赋值给当前的节点
+                    currNode = currNode.next;
+                }
+                //4,创建新节点
+                var newNode = new Node(element);
+                //5，把新创建的节点插入到最后的节点
+                currNode.next = newNode;
+                //6,把最后的节点给新节点的前驱赋值
+                newNode.previous = currNode;
+                //7,节点长度增加
+                this.length++;
+            }
+            //遍历节点
+            this.forEach = function (call) {
+                //1,获得头节点
+                var currNode = this.head;
+                //2,创建下标
+                var index = 0;
+                while (currNode != null) {
+                    call(currNode, index);
+                    index++;
+                    currNode = currNode.next;
+                }
+            }
+
+
+            this.advance=function (element,n) {
+                //1,找到当前的节点
+                var currentNode = this.find(element);
+                var target=currentNode;
+                while(n>0&&target.previous.element!='head'){
+                    target= target.previous;
+                    n--;
+                }
+                //获得目标节点的前一个节点
+                var preNode =target.previous;
+                //获得移动节点的前一个节点
+                var currentPre = currentNode.previous;
+                var currentNext = currentNode.next;
+                //让前一个节点和当前的节点连接
+                preNode.next=currentNode;
+                currentNode.next = target;
+
+                target.previous=currentNode;
+                currentNode.previous=preNode;
+
+                currentPre.next=currentNext;
+                if(currentNext!=null){
+                    currentNext.previous=currentPre;
+                }
+            }
+            
+            this.back=function (element,n) {
+                //1,获得当前的节点
+                var currentNode = this.find(element);
+                //2，当前的节点为空，或者当前的节点在最后的位置,就不需要移动
+                if(currentNode==null||currentNode.next==null)
+                    return ;
+                //3,移动都后面的目标节点
+                var target=currentNode;
+                while(n>0&&target.next!=null){
+                    target = target.next;
+                    n--;
+                }
+                //链接当前节点的前后位置
+                var preNode = currentNode.previous;
+                var nextNode = currentNode.next;
+
+                preNode.next = nextNode;
+                nextNode.previous=preNode;
+
+                //2,链接目标节点
+                //获得目标节点的下一个节点
+                var targetNext = target.next;
+
+                //链接目标节点和当前的节点
+                target.next=currentNode;
+                currentNode.previous=target;
+
+                //链接目标节点后面节点和当前节点
+                currentNode.next=targetNext;
+                if(targetNext!=null){
+                    targetNext.previous=currentNode;
+                }
+            }
+
+
+            this.find = function (element) {
+                //1,获得第一个节点
+                var currNode = this.head;
+                //2,遍历节点
+                while (currNode.element != element) {
+                    //3，把当前节点的下一个节点给当前节点赋值
+                    currNode = currNode.next;
+                }
+                //返回当前节点
+                return currNode;
+            }
+
+        }
+
+        var lList = new LList();
+
+        lList.insert("小刚");
+        lList.insert("小明");
+        lList.insert("小李");
+        lList.insert("大花");
+
+        lList.back("小明",1);
+
+        lList.forEach(function (node, index) {
+            console.log(node.element);
+        })
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
