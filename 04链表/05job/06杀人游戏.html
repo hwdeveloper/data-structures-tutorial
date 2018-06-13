@@ -108,8 +108,10 @@
                     number++;
                     if(number%3==0){
                         this.remove(currentNode.element);
-                        number=0; }
-                    currentNode = currentNode.next; }
+                        number=0;
+                    }
+                    currentNode = currentNode.next;
+                }
 
                 console.log(currentNode.element+"活下来了");
                 console.log(currentNode.next.element+"活下来了");
@@ -122,7 +124,11 @@
         for(var i=2;i<=41;i++){
             list.insert('士兵'+i);
         }
-
+        
+        list.forEach(function (node,index) {
+            console.log(node.element);
+        })
+        console.log("杀人游戏开始！");
          list.selfKill();
 
 
