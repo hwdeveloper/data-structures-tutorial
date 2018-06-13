@@ -40,16 +40,19 @@
                 }
             };
             this.union=function (set) {
-                var tempSet = new Set();
-                for (var i = 0; i < this.dataStore.length; ++i) {
-                    tempSet.add(this.dataStore[i]);
-                }
-                for (var i = 0; i < set.dataStore.length; ++i) {
-                    if (!tempSet.contains(set.dataStore[i])) {
-                        tempSet.dataStore.push(set.dataStore[i]);
+                //1，创建一个临时的set
+                var buffer = new Set();
+                //2,把当前的集合数据添加到临时集合里面
+                this.forEach(function (item,index) {
+                    buffer.add(item);
+                })
+
+                set.forEach(function (item,index) {
+                    if(!buffer.contains(item)){
+                        buffer.add(item);
                     }
-                }
-                return tempSet;
+                })
+                return buffer;
             };
 
         }
