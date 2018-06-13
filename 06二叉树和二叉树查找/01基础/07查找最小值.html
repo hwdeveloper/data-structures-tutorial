@@ -79,6 +79,15 @@
                 }
                 return null;
             }
+            
+            this.getMin=function () {
+                //1,获得跟节点
+                var currentNode = this.root;
+                while(currentNode.left!=null){
+                    currentNode = currentNode.left;
+                }
+                return currentNode;
+            }
         }
         var nums = new BST();
         nums.insert(23);
@@ -89,15 +98,13 @@
         nums.insert(99);
         nums.insert(22);
         nums.inOrder(nums.root);
-        console.log("\n");
-        var value = 23;
-        var found = nums.find(value);
-        if (found != null) {
-            console.log("在二叉树里面找到 " + value );
-        }
-        else {
-            console.log("在二叉树里面没有找到"+value );
-        }
+        console.log("*******查找最小的数据******");
+
+        var minNode = nums.getMin();
+
+
+console.log(minNode.data);
+
     </script>
 </head>
 <body>

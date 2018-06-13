@@ -9,6 +9,7 @@
             this.data = data;
             this.left = left;
             this.right = right;
+            this.parent=null;
             this.show = function () {
                 return this.data;
             };
@@ -29,6 +30,7 @@
                             current = current.left;
                             if (current == null) {
                                 parent.left = n;
+                                n.parent=parent;
                                 break;
                             }
                         }
@@ -36,6 +38,7 @@
                             current = current.right;
                             if (current == null) {
                                 parent.right = n;
+                                n.parent=parent;
                                 break;
                             }
                         }
@@ -64,6 +67,19 @@
                     console.log(node.show() + " ");
                 }
             }
+            this.getMin=function (current) {
+                while (current.left != null) {
+                    current = current.left;
+                }
+                return current;
+            }
+            this.getMax=function () {
+                var current = this.root;
+                while (current.right != null) {
+                    current = current.right;
+                }
+                return current.data;
+            }
             this.find=function (data) {
                 var current = this.root;
                 while (current != null) {
@@ -79,7 +95,61 @@
                 }
                 return null;
             }
+
+            this.removeNode=function (data) {
+
+                //1,获得要删除的节点
+                var node = this.find(data);
+                //2,如果当前的节点为空
+                if(node==null)
+                    return ;
+                //3,获得当前节点的父节点
+                var parentNode = node.parent;
+                var leftNode = node.left;
+                var right=node.right;
+
+                if(right==null){
+                    if(parentNode==null){
+                        this.root=leftNode;
+                        leftNode.parent=null;
+                    }else{
+                        if(node.data<parentNode.data){
+                            parentNode.left=leftNode;
+                        }else{
+                            parentNode.right=leftNode;
+                        }
+                        leftNode.parent=parentNode;
+                    }
+                }
+
+                if(parentNode==null){
+                    this.root=right;
+                    var minNode = this.getMin(right);
+
+                    minNode.left =leftNode;
+                    if(leftNode!=null)
+                    leftNode.parent=minNode;
+
+                }else{
+                    //1,让有右子节点和当前节点的父节点连接
+                    if(node.data<parentNode.data){
+                        parentNode.left=right;
+                    }else{
+                        parentNode.right=right;
+                    }
+                    right.parent=parentNode;
+                    //2,获得右子节点的最小节点
+                    var minNode = this.getMin(right);
+                    //3,把左节点和右子节点的最小节点连接在一起
+                    minNode.left =leftNode;
+                    if(leftNode!=null)
+                        leftNode.parent=minNode;
+
+                }
+
+            }
         }
+
         var nums = new BST();
         nums.insert(23);
         nums.insert(45);
@@ -88,16 +158,13 @@
         nums.insert(3);
         nums.insert(99);
         nums.insert(22);
+
+
+
+
+        nums.removeNode(99);
+        // console.log("删除结束");
         nums.inOrder(nums.root);
-        console.log("\n");
-        var value = 23;
-        var found = nums.find(value);
-        if (found != null) {
-            console.log("在二叉树里面找到 " + value );
-        }
-        else {
-            console.log("在二叉树里面没有找到"+value );
-        }
     </script>
 </head>
 <body>
