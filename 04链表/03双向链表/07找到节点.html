@@ -77,7 +77,7 @@
                 var currNode = this.head;
 
                 //2,遍历节点
-                while(currNode.element!=element){
+                while(currNode!=null&&currNode.element!=element){
                     //3，把当前节点的下一个节点给当前节点赋值
                     currNode = currNode.next;
                 }
@@ -95,8 +95,8 @@
         lList.insert("小李");
         lList.insert("大花");
 
-        var node = lList.find('小李');
-        console.log(node.element);
+        var node = lList.find('小李1');
+        console.log(node);
 
     </script>
 </head>
