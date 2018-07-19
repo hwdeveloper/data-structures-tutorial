@@ -28,6 +28,16 @@
                 newNode.next= currNode.next;
                 currNode.next=newNode;
             };
+            this.insertBefore=function (element,before) {
+                //创建当前的节点
+                let node = new Node(element);
+                //获得before节点的前一个节点
+                let preNode= this.findPrevious(before);
+                //把before节点连到新节点的后面
+                node.next=preNode.next;
+                //把preNode节点和新节点连到一起
+                preNode.next=node;
+            }
 
             this.forEach=function(call) {
                 //1,获得头节点
