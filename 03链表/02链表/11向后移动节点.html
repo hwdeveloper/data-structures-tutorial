@@ -85,6 +85,27 @@
                 preNode.next=currentNode;
             }
 
+            this.back=function(currElement,n){
+                //1,获得当前的节点
+                var currentNode = this.find(currElement);
+                //2,假设当前的节点为最后的节点
+                var lastNode=currentNode;
+                //3,在n大于0的条件下，下一个节点为空的时候停下来
+                while(lastNode.next!=null&&n>0){
+                    lastNode = lastNode.next;
+                    n--;
+                }
+                //4,currentNode节点和lastNode相等，说明currentNode本身就是最后的节点
+                if(currentNode==lastNode){
+                    return;
+                }
+                //当前节点的前一个节点和当前节点的后一个节点连在一起
+                var currentPre=this.findPrevious(currElement);
+                currentPre.next=currentNode.next;
+                //把当前节点连在lastNode节点后面
+                currentNode.next=lastNode.next;
+                lastNode.next=currentNode;
+            }
         }
 
         var list = new LList();
@@ -93,7 +114,7 @@
         list.insert('你好3');
         list.insert('你好4');
 
-        list.advance('你好3',100);
+        list.back('你好3',100);
 
 
         list.forEach(function (data,index) {
