@@ -9,41 +9,31 @@
 
         function LList() {
             this.head = new Node('head');
+
             //始终是在最后一个节点插入
             this.insert = function (element) {
-                //1,创建一个新节点
-                var newNode= new Node(element);
-                //获得第一个节点
-                var currentNode = this.head.next;
-                if(currentNode==null){
-                    this.head.next = newNode;
-                    newNode.previous=this.head;
-                }else{
-                    while(currentNode!=null&&element>currentNode.element){
-                        currentNode = currentNode.next;
-                    }
-                    //如果当前新插入进来的值是最大的，那么currentNode是空的
-                    if(currentNode==null){
 
-                        var lastNode = this.findLast();
+                //1,设置当前的节点
+                var currentNode = this.head;
+                //2,创建新的节点
+                var newNode = new Node(element);
 
-                        lastNode.next = newNode;
-                        newNode.previous=lastNode;
-
-                    }else{
-                        var preNode =currentNode.previous;
-                        //前一个节点和新节点链在一起
-                        preNode.next=newNode;
-                        newNode.previous=preNode;
-                        //当前节点和新节点链在一起
-                        newNode.next=currentNode;
-                        currentNode.previous=newNode;
-                    }
-
-
+                while (currentNode.next != null && currentNode.next.element != 'head') {
+                    //把当前节点的下一个节点给予当前的节点
+                    currentNode = currentNode.next;
                 }
 
-                console.log("最后节点的内容:"+this.findLast().element);
+                //当前节点的下一个节点指向新节点
+                currentNode.next = newNode;
+                //新的节点的前一个节点指向当前的节点
+                newNode.previous = currentNode;
+
+
+                //把后面的头节点连接在一起
+                newNode.next = this.head;
+
+                this.head.previous = newNode;
+
             }
 
             this.insertAfter = function (newElement, after) {
@@ -64,6 +54,10 @@
                     after.next = newNode;
                     newNode.previous = after;
                 }
+
+                //1 2 3
+
+
             }
 
             this.find = function (element) {
@@ -79,11 +73,11 @@
                 //1,获得当前的节点
                 var currentNode = this.head.next;
                 //2,设置遍历节点的下标
-                var index = 0;
-
-                var time = 0;
+                var index = 1;
+                call(this.head, index);
+                index++;
                 //3,遍历节点
-                while (currentNode != null&&currentNode.element!='head') {
+                while (currentNode != this.head) {
                     call(currentNode, index);
                     //把当前的节点移动后面去
                     currentNode = currentNode.next;
@@ -92,25 +86,15 @@
                 }
             }
 
-            this.forEachReverse = function (call) {
-                //1,找到最后的节点
-                var lastNode = this.findLast();
-                //2，反向的遍历
-                while (lastNode != null) {
-                    call(lastNode);
-                    lastNode = lastNode.previous;
-                }
-            }
 
             this.findLast = function () {
                 //当前的头节点
                 var currentNode = this.head;
                 //遍历
-                while (currentNode.next != null) {
+                while (currentNode.next != null && currentNode.next != this.head) {
                     currentNode = currentNode.next;
                 }
                 return currentNode;
-
             }
 
             this.remove = function (element) {
@@ -125,28 +109,54 @@
 
             }
 
+            this.kill=function () {
+                var node = this.head;
+                var index=1;
+                while(node.next.next!=node){
+                    index++;
+                    node=node.next;
+                    if(index==3){
+                        this.remove(node.element);
+                        index=0;
+                    }
+                }
+                console.log(node);
+            }
+
         }
 
         //1,创建双向链表
         var list = new LList();
 
-        for(var i=0;i<10;i++){
 
-            var buffer = Math.floor(Math.random()*100);
-            list.insert(buffer);
+
+        //1,设置人的数量
+        var length = 42;
+        for (var i = 2; i <= length; i++) {
+            list.insert(i);
+
         }
-        console.log("******************************");
-        //3,遍历节点
+
         list.forEach(function (node, index) {
+
             console.log(node.element);
+
         })
+
+        list.kill();
+
+        //console.log(list);
+
+        
+
 
 
     </script>
 </head>
 <body>
 
-<h1>列表 插入数据的时候，自动排序，插入的是阿拉伯数字，小的在前，大的在后</h1>
+<h1>传说在公元1 世纪的犹太战争中，犹太历史学家弗拉维奥·约瑟夫斯和他的40 个同胞被罗马士兵包围。犹太士兵决定宁可自杀也不做俘虏，于是商量出了一个自杀方案。他们围成一个圈，从一个人开始，数到第三个人时将第三个人杀死，然后再数，直到杀光所有人。约瑟夫和另外一个人决定不参加这个疯狂的游戏，他们快速地计算出了两个位置，站在那里得以幸存。写一段程序将n 个人围成一圈，并且第m个人会被杀掉，计算一圈人中哪两个人最后会存活。使用循环链表解决该问题。
+</h1>
 
 </body>
 </html>
